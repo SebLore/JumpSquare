@@ -1,35 +1,30 @@
 #include <SFML/Graphics.hpp>
-#include <iostream>
-#include "Game.h"
-#include "TerrainHandler.h"
+#include "Gamehandler.hpp"
 
 int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	sf::RenderWindow window(sf::VideoMode((int)WINDOW_WIDTH, (int)WINDOW_HEIGHT), "Squaredude 64");
-	sf::Event event;
-	Game game;
-	sf::Clock clock;
-	float dt = 0.0f;
-	float tot = 9.0f;
-	
-	while (window.isOpen())
-	{
-		
-		dt = clock.restart().asSeconds();
-		tot += dt;
-		while (window.pollEvent(event))
-			if (event.type == sf::Event::Closed)
-				window.close();
-
-		game.Update(dt*GAMESPEED);
-		game.Draw(window);
-		if (tot > 10) 
-		{
-			game.Print();
-			tot = 0.0f;
-		}
-		window.display();
-	}
+	GameHandler gh;
+	gh.Run();
 	return EXIT_SUCCESS;
+	//sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTHI, WINDOW_HEIGHTI), "Laboration DV1497");
+	//sf::Event event = sf::Event{};
+	////Game game;
+	//sf::Clock clock;
+	//while (window.isOpen())
+	//{
+	//	while (window.pollEvent(event))
+	//	{
+	//		if (event.type == sf::Event::Closed) 
+	//			window.close();
+	//		//if (event.type == sf::Event::LostFocus) //Pause the game when you click outside the window
+	//		//	game.Pause();
+	//		//if (event.type == sf::Event::GainedFocus) //Unpause when you click outside
+	//		//	game.Unpause();
+	//	}
+	//	window.clear();
+	//	//game.Update(clock.restart().asSeconds()*GAMESPEED);
+	//	//window.draw(game);
+	//	window.display();
+	//}
 }
